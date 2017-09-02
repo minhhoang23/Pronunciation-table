@@ -1,0 +1,45 @@
+.vowel,
+.monophthongs,
+.diphthongs,
+.consonants,
+.cons {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+
+.vowel,
+.consonants {
+	max-width: 1050px;
+}
+.monophthongs,
+.diphthongs {
+	max-width: 500px;
+}
+
+.diphthongs {
+	max-height: 200px;
+}
+
+.monophthongs > *,
+.diphthongs > *,
+.cons > * {
+	flex: 1;
+}
+
+img {
+	width: 120px;
+	height: 100px;
+}
+
+#vowel-banner img,
+#consonant-banner img {
+	height: 309px;
+	width: 50px;
+}
+
+.cons {
+	max-width: 1000px;
+}
+
+
