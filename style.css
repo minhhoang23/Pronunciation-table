@@ -81,8 +81,24 @@ img {
 }
 
 .example {
-	height: 5em;
+	height: 78px;;
 	width: 120px;
 	background-color: grey;
-	display: none;
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+}
+
+.words {
+	text-align: center;
+	height: 23px;
+	font-family: Arial;
+	color: white;
+	padding-top: 3px;
+}
+
+.words:hover {
+	cursor: pointer;
+	background-color: white;
+	color: black;
 }

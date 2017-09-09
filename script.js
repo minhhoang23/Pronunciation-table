@@ -1,5 +1,5 @@
 $('.overlay').hide();
-
+$('.example').hide();
 //event handler for showing the overlay
 $('a').click(function (e) {
 	'use strict';
@@ -16,7 +16,7 @@ $('.overlay').click(function (e) {
 	'use strict';
 	e.preventDefault();
 	//excluding elements of option box from triggering the hide event
-	if (!$(e.target).is('.option-box, .btn, .image, .button, .example')) {
+	if (!$(e.target).is('.option-box, .btn, .image, .button, .example, .words')) {
 		$(this).hide();
 		$('.example').hide();
 		$('.option-box img').remove();
@@ -80,9 +80,9 @@ $('#example').click(function (e) {
 			if (word[i].includes(id + '_')) {
 				//if the number in id > 10
 				if (id.length == 5) {
-					$('.example').append("<p class = 'words'>" + word[i].substr(6, word[i].length) + "</p>");
+					$('.example').append("<div class = 'words' id = '" + word[i] + "'>" + word[i].substr(6, word[i].length) + "</div>");
 				} else {
-					$('.example').append("<p class = 'words'>" + word[i].substr(5, word[i].length) + "</p>");
+					$('.example').append("<div class = 'words' id = '" + word[i] + "'>" + word[i].substr(5, word[i].length) + "</div>");
 				}
 			}
 		}	
@@ -90,7 +90,7 @@ $('#example').click(function (e) {
 	$('.words').detach();
 });
 
-//event handler for playing sound
+//event handler for playing sound of the sound-button
 $('#sound').click(function (e) {
 	'use strict';
 	e.preventDefault();
@@ -99,25 +99,10 @@ $('#sound').click(function (e) {
 	audio.play();
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//event handler for playing sound of example words using "delegate"
+$('.example').delegate('.words', 'click', function (e) {
+	'use strict';
+	e.preventDefault();
+	var audio = new Audio ("sounds/" + this.id + ".mp3");
+	audio.play();
+});
