@@ -1,11 +1,13 @@
 $('.overlay').hide();
+$('.example').hide();
 
 //event handler for showing the overlay
 $('a').click(function (e) {
 	'use strict';
 	e.preventDefault();
 	$('.overlay').show();
-	//add image to option box
+
+//add image to option box
 	$('.option-box').prepend("<img src = 'images/" + this.id + ".png'>");
 	$('.option-box img').addClass('image');
 	return false;
@@ -16,7 +18,7 @@ $('.overlay').click(function (e) {
 	'use strict';
 	e.preventDefault();
 	//excluding elements of option box from triggering the hide event
-	if (!$(e.target).is('.option-box, .btn, .image, .button, .example')) {
+	if (!$(e.target).is('.option-box, .btn, .image, .button, .example, .words')) {
 		$(this).hide();
 		$('.example').hide();
 		$('.option-box img').remove();
@@ -75,22 +77,22 @@ $('#example').click(function (e) {
 		var imgSrc = $('.option-box img').attr('src');
 		var id = imgSrc.substr(7, imgSrc.length - 11);
 		//loop through word
-		for (let i = 0; i < word.length; i++) {
+		for (let i = 0; i < word.length; i += 1) {
 			//collect words that match the id
 			if (word[i].includes(id + '_')) {
 				//if the number in id > 10
-				if (id.length == 5) {
-					$('.example').append("<p class = 'words'>" + word[i].substr(6, word[i].length) + "</p>");
+				if (id.length === 5) {
+					$('.example').append("<div class = 'words' id = '" + word[i] + "'>" + word[i].substr(6, word[i].length) + "</div>");
 				} else {
-					$('.example').append("<p class = 'words'>" + word[i].substr(5, word[i].length) + "</p>");
+					$('.example').append("<div class = 'words' id = '" + word[i] + "'>" + word[i].substr(5, word[i].length) + "</div>");
 				}
 			}
-		}	
+		}
 	});
 	$('.words').detach();
 });
 
-//event handler for playing sound
+//event handler for playing sound of the sound-button
 $('#sound').click(function (e) {
 	'use strict';
 	e.preventDefault();
@@ -99,25 +101,10 @@ $('#sound').click(function (e) {
 	audio.play();
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//event handler for playing sound of example words using "delegate"
+$('.example').delegate('.words', 'click', function (e) {
+	'use strict';
+	e.preventDefault();
+	var audio = new Audio("sounds/" + this.id + ".mp3");
+	audio.play();
+});
