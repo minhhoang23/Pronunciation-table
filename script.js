@@ -108,3 +108,34 @@ $('.example').delegate('.words', 'click', function (e) {
 	var audio = new Audio("sounds/" + this.id + ".mp3");
 	audio.play();
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+//event handler for playing sound of example words using "delegate"
+$('.example').delegate('.words', 'click', function (e) {
+	'use strict';
+	e.preventDefault();
+	var audio = new Audio ("sounds/" + this.id + ".mp3");
+	audio.play();
+});
+>>>>>>> 8e93ed998f46edcf027524b11ab9f7db36cf70d7
